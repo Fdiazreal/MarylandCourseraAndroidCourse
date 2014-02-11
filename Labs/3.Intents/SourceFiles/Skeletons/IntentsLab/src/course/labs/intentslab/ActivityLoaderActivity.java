@@ -79,19 +79,19 @@ public class ActivityLoaderActivity extends Activity {
 
 		Log.i(TAG, "Entered startImplicitActivation()");
 
-		// TODO - Create a base intent for viewing a URL 
+		// Create a base intent for viewing a URL 
 		// (HINT:  second parameter uses parse() from the Uri class)
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
 		
-		
-		// TODO - Create a chooser intent, for choosing which Activity
+		// Create a chooser intent, for choosing which Activity
 		// will carry out the baseIntent. Store the Intent in the 
 		// chooserIntent variable below. HINT: using the Intent class' 
 		// createChooser())
 		
-		Intent chooserIntent = null;
+		Intent chooserIntent = Intent.createChooser(intent, getResources().getString(R.string.chooserText));
 
 		Log.i(TAG,"Chooser Intent Action:" + chooserIntent.getAction());
-		// TODO - Start the chooser Activity, using the chooser intent
+		// Start the chooser Activity, using the chooser intent
 		startActivity(chooserIntent);
 
 	}
@@ -106,7 +106,6 @@ public class ActivityLoaderActivity extends Activity {
 		// If so, update the Textview showing the user-entered text.
 		if(resultCode == RESULT_OK && requestCode == GET_TEXT_REQUEST_CODE){
 			String enteredText = data.getExtras().get(Intent.EXTRA_RETURN_RESULT).toString();
-			Log.i(TAG, "The entered text was: " + enteredText);
 			mUserTextView.setText(enteredText);
 		}
 
